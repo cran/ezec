@@ -8,21 +8,24 @@ options(out.width = 100)
 packageVersion("drc")
 citation("drc")
 
-## ---- dummydata----------------------------------------------------------
+## ----dummydata-----------------------------------------------------------
 library("ezec")
-data("dummydata", library = "ezec")
+data("dummydata", package = "ezec")
 head(dummydata) # the function head means "look at the top of the object"
 
-## ---- ec_table-----------------------------------------------------------
+## ----ec_table------------------------------------------------------------
 library("ezec")
-data(dummydata)
+data("dummydata", package = "ezec")
 res <- EC_table(dummydata, form = response ~ dose)
 print(res)
 
-## ---- ec_table_par, fig.width = 7, fig.height = 4------------------------
+## ----ec_table_par, fig.width = 7, fig.height = 4-------------------------
 par(mfrow = c(1, 2)) # set window to have 1 row and two columns
 EC_table(dummydata, form = response ~ dose)
 par(mfrow = c(1, 1)) # reset the window
+
+## ----write, eval = FALSE-------------------------------------------------
+#  write.table(res, file = "dummy_results.csv", row.names = FALSE, sep = ",")
 
 ## ------------------------------------------------------------------------
 EC_table(dummydata, form = response ~ dose, plot = FALSE, result = "summary")
